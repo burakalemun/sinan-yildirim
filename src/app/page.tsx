@@ -246,7 +246,7 @@ export default function Home() {
               <div className="order-1 lg:order-2">
                 <div className="relative aspect-[3/4] bg-surface-container-low p-3 md:p-4 shadow-sm border border-outline-variant/20">
                   <div className="w-full h-full overflow-hidden bg-surface-container relative">
-                    <img src="https://images.unsplash.com/photo-1620331317312-74b88bf40907?q=80&w=1200&auto=format&fit=crop" className="w-full h-full object-cover grayscale-[10%]" alt="Sinan Yıldırım Story" />
+                    <img src="/sinan-profile.jpg" className="w-full h-full object-cover grayscale" alt="Sinan Yıldırım Story" />
                     <div className="absolute top-4 left-4 bg-surface-container-lowest/90 px-3.5 py-1.5 border border-outline-variant/30">
                       <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Kişisel Atelier Vizyonu</span>
                     </div>
