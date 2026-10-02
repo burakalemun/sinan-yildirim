@@ -128,12 +128,6 @@ export default function Home() {
     "col-span-2 md:col-span-1 row-span-1",
   ]
 
-  const sendWhatsAppBooking = () => {
-    const address = bookingAddress || 'Not specified'
-    const phone = bookingPhone || 'Not specified'
-    const message = `Hello Sinan Yildirim. I would like to request a private hair appointment at my home:\n- Date: ${selectedDate}\n- Session: ${selectedSlot}\n- Service: ${bookingService}\n- Address: ${address}\n- Contact: ${phone}\nPlease confirm availability and details.`
-    window.open(`https://wa.me/905550000000?text=${encodeURIComponent(message)}`, '_blank')
-  }
 
   return (
     <>
