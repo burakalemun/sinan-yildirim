@@ -7,17 +7,15 @@ import {
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { stopLenis, startLenis } from '@/components/SmoothScroll'
-import { getCalApi } from "@calcom/embed-react"
+import Cal, { getCalApi } from "@calcom/embed-react"
+import servicesData from '@/data/services.json'
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [selectedDate, setSelectedDate] = useState('18 Nisan 2025')
-  const [selectedSlot, setSelectedSlot] = useState('12:00 - Öğle Seansı')
+  const [selectedCategory, setSelectedCategory] = useState("Women's Haircut")
+  const [selectedDate, setSelectedDate] = useState('18 April 2025')
+  const [selectedSlot, setSelectedSlot] = useState('12:00 - Afternoon Session')
   
-  const [bookingService, setBookingService] = useState('İmza Düğün Hizmeti')
-  const [bookingAddress, setBookingAddress] = useState('')
-  const [bookingPhone, setBookingPhone] = useState('')
-  
+  const [calKey, setCalKey] = useState(0)
   const [testimonialIndex, setTestimonialIndex] = useState(0)
 
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
@@ -44,7 +42,7 @@ export default function Home() {
       const cal = await getCalApi({ namespace: "randevu" });
       cal("ui", {
         styles: {
-          branding: { brandColor: "#735a32" }
+          branding: { brandColor: "#a38247" }
         },
         hideEventTypeDetails: false,
         layout: "month_view"
@@ -52,46 +50,50 @@ export default function Home() {
     })();
   }, [])
   
-  // Yorumlar ve ilgili görseller
+  // Testimonials and related images
   const testimonials = [
     { 
-      text: "Sessiz, sakin ve son derece kusursuz bir balayaj. Kendi evimde taze demlenmiş kahvemi yudumlarken birinci sınıf bir stilistin saçımla ilgilenmesi harikaydı. Salon trafiğine bir daha asla dönmem.", 
+      text: "A quiet, calm, and absolutely flawless balayage. Having a top-tier stylist attend to my hair while sipping fresh coffee in my own home was wonderful. I will never return to salon traffic.", 
       author: "Zeynep A.", 
-      context: "Evde Kişisel Seans — Mart 2025",
+      context: "Private Home Session — March 2025",
       image1: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop", 
       image2: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1200&auto=format&fit=crop", 
-      detailTitle: "DOKU & HAREKET",
-      detailText: "Sert Spreylerden Uzak, Doğal İpeksi Düşüş."
+      detailTitle: "TEXTURE & MOVEMENT",
+      detailText: "Far from Stiff Sprays, Natural Silky Fall."
     },
     { 
-      text: "Düğün sabahımda inanılmaz bir sükunet sağladı. Sinan Bey'in evime kurduğu profesyonel set o kadar iyiydi ki, kendimi lüks bir salonda hissettim. Kesinlikle tavsiye ederim.", 
+      text: "Provided an incredible calmness on my wedding morning. The professional setup he brought to my home was so good I felt like I was in a luxury salon. Highly recommended.", 
       author: "Elif T.", 
-      context: "Düğün Hazırlığı — Şubat 2025",
+      context: "Wedding Prep — February 2025",
       image1: "https://images.unsplash.com/photo-1595476108010-b4d1f10d5e42?q=80&w=1200&auto=format&fit=crop", 
       image2: "https://images.unsplash.com/photo-1600948836101-f9ff5f6e2469?q=80&w=1200&auto=format&fit=crop", 
-      detailTitle: "STRES YÖNETİMİ",
-      detailText: "Kendi Alanınızda Mükemmel Odaklanma."
+      detailTitle: "STRESS MANAGEMENT",
+      detailText: "Perfect Focus in Your Own Space."
     },
     { 
-      text: "Yıllardır aradığım kusursuz kesimi sonunda evimin salonunda buldum. Çok profesyonel, işlemi bitirdikten sonra geride tek bir saç teli bile bırakmayan inanılmaz bir özen.", 
+      text: "I finally found the flawless cut I've been looking for for years right in my living room. Extremely professional, amazing care leaving not a single strand of hair behind.", 
       author: "Ceyda K.", 
-      context: "Evde Kesim & Fön — Ocak 2025",
+      context: "Home Cut & Blowdry — January 2025",
       image1: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1200&auto=format&fit=crop", 
       image2: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1200&auto=format&fit=crop", 
-      detailTitle: "GEOMETRİK KESİM",
-      detailText: "Yüz Hatlarına Uygun Sıfır Hata Prensibi."
+      detailTitle: "GEOMETRIC CUT",
+      detailText: "Zero Error Principle Tailored to Facial Features."
     }
   ]
 
   const galleryItems = [
-    { id: 1, category: 'renk', src: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1600&auto=format&fit=crop', title: 'Güneş Işıltısı Balayaj', desc: 'Doğal saç tonunun üzerine atılan serbest fırça dokunuşlarıyla elde edilen organik ve yıpranmamış renk geçişleri. Ev ortamında dahi 0 hata ile uygulandı.' },
-    { id: 2, category: 'gelin', src: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1600&auto=format&fit=crop', title: 'İmza Gelin Topuzu', desc: 'Düğün sabahı gelinin konfor alanında hazırlanan, rüzgara ve tere dayanıklı, sert spreylerden uzak ipeksi gelin tasarımı.' },
-    { id: 3, category: 'gelin', src: 'https://images.unsplash.com/photo-1595476108010-b4d1f10d5e42?q=80&w=1600&auto=format&fit=crop', title: 'Hazırlık Süreci', desc: 'Gelinin stres seviyesini en aza indiren, yorucu kuaför trafiğinden uzak, tamamen ona odaklanılmış kişisel bir deneyim.' },
-    { id: 4, category: 'kesim', src: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1600&auto=format&fit=crop', title: 'Dalgalı Fön & Şekillendirme', desc: 'Günün her saatinde kalıcılığını koruyan, saçın doğal volümünü destekleyen ipeksi dalga uygulaması.' },
-    { id: 5, category: 'kesim', src: 'https://images.unsplash.com/photo-1600948836101-f9ff5f6e2469?q=80&w=1600&auto=format&fit=crop', title: 'Evde Salon Mimarisi', desc: 'Salonlarda kullanılan profesyonel tüm teçhizatın evinizin bir odasına kurularak, ardında tek bir tel bile bırakmadan icra edilen mimari kesim.' },
-    { id: 6, category: 'kesim', src: 'https://images.unsplash.com/photo-1620331317312-74b88bf40907?q=80&w=1600&auto=format&fit=crop', title: 'Küt Kesim & Bob', desc: 'Çene hattını vurgulayan, ense kökünden uca kadar kusursuz bir simetri ile uygulanan keskin ve yapısal bob kesimi.' },
-    { id: 7, category: 'renk', src: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1600&auto=format&fit=crop', title: 'Soğuk Sarılar', desc: 'Saçın iç bağlarına zarar vermeyen yüksek kalite açıcılar kullanılarak yaratılan pürüzsüz buz sarısı yansımalar.' },
-    { id: 8, category: 'renk', src: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1600&auto=format&fit=crop', title: 'Kişiye Özel Tonlama', desc: 'Her cildin alt tonuna özel olarak hazırlanan organik karışımlarla sağlanan derin ve zengin renk doygunluğu.' },
+    { id: 1, category: 'renk', src: '/gallery/balyaj.jpg', title: 'Sun-Kissed Balayage', desc: 'Flawless blonde reflections achieved with freehand brush strokes over the natural hair tone.' },
+    { id: 2, category: 'gelin', src: '/gallery/gelin.jpg', title: 'Signature Bridal Design', desc: 'VIP preparation and professional styling focused solely on the bride, without the wedding day stress.' },
+    { id: 3, category: 'kesim', src: '/gallery/kesim.jpg', title: 'Layered Cut & Blowdry', desc: "Modern layered cut enhancing the hair's natural volume, tailored to facial features." },
+    { id: 4, category: 'renk', src: '/gallery/renk.jpg', title: 'Home Salon Architecture (Color)', desc: 'Applying the most precise coloring processes by setting up all professional salon equipment in a room of your home.' },
+    { id: 5, category: 'kesim', src: '/gallery/fon.jpg', title: 'Flawless Blowdry & Care', desc: 'Silky blow-dry supporting natural volume, maintaining its hold throughout the day.' },
+    { id: 6, category: 'kesim', src: '/gallery/keratin.jpg', title: 'Personal Atelier Vision', desc: 'Flawless hair design emerging from unparalleled attention to detail in a time entirely dedicated to you.' },
+    { id: 7, category: 'renk', src: '/gallery/extra1.jpg', title: 'Custom Coloring', desc: 'Hair toning applied with a custom color analysis suited for every face type and skin tone.' },
+    { id: 8, category: 'kesim', src: '/gallery/extra2.jpg', title: 'Modern Cutting Techniques', desc: 'A fresh look and removal of split ends in the comfort of your home.' },
+    { id: 9, category: 'renk', src: '/gallery/extra3.jpg', title: 'Creative Colors', desc: 'Vibrant and striking pigment designs (e.g. magenta/pink) applied according to special requests.' },
+    { id: 10, category: 'kesim', src: '/gallery/extra4.jpg', title: 'Masterpiece Details', desc: 'Long-lasting form achieved with extra attention to detail during the cutting and styling phases.' },
+    { id: 11, category: 'renk', src: '/gallery/extra5.jpg', title: 'Bleaching & Coloring Process', desc: 'Protective color bleaching processes applied step-by-step without damaging the hair.' },
+    { id: 12, category: 'gelin', src: '/gallery/extra6.jpg', title: 'Special Event Prep', desc: 'Special occasion designs promising all-day hold and aesthetic integrity, not just hair.' },
   ]
 
   const filteredGallery = galleryItems.filter(item => galleryFilter === 'all' || item.category === galleryFilter)
@@ -127,9 +129,9 @@ export default function Home() {
   ]
 
   const sendWhatsAppBooking = () => {
-    const address = bookingAddress || 'Belirtilmedi'
-    const phone = bookingPhone || 'Belirtilmedi'
-    const message = `Merhaba Sinan Yıldırım. Evimde kişisel saç randevusu talep ediyorum:\n- Tarih: ${selectedDate}\n- Seans: ${selectedSlot}\n- Hizmet: ${bookingService}\n- Adres: ${address}\n- İletişim: ${phone}\nMüsaitlik ve detay teyidini rica ederim.`
+    const address = bookingAddress || 'Not specified'
+    const phone = bookingPhone || 'Not specified'
+    const message = `Hello Sinan Yildirim. I would like to request a private hair appointment at my home:\n- Date: ${selectedDate}\n- Session: ${selectedSlot}\n- Service: ${bookingService}\n- Address: ${address}\n- Contact: ${phone}\nPlease confirm availability and details.`
     window.open(`https://wa.me/905550000000?text=${encodeURIComponent(message)}`, '_blank')
   }
 
@@ -139,15 +141,15 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
         <div className="w-full bg-primary-container text-on-primary py-2 px-margin text-center">
           <p className="font-label-caps text-label-caps uppercase tracking-[0.2em] text-surface-container-high">
-            EVİNİZİN KONFORUNDA PROFESYONEL SAÇ TASARIM HİZMETİ • RANDEVU TAKVİMİ AÇILDI
+            PROFESSIONAL HAIR DESIGN IN THE COMFORT OF YOUR HOME • APPOINTMENT CALENDAR OPEN
           </p>
         </div>
         <div className="h-24 max-w-7xl mx-auto px-margin md:px-margin-desktop flex items-center justify-between gap-6 md:gap-8">
           
           <nav className="hidden xl:flex items-center gap-10 flex-1">
-            <a href="#hizmet-menusu" className="font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">Menü & Tarifeler</a>
-            <a href="#galeri" className="font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">Galeri</a>
-            <a href="#yorumlar" className="font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">Yorumlar</a>
+            <a href="#hizmet-menusu" className="font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">Menu & Prices</a>
+            <a href="#galeri" className="font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">Gallery</a>
+            <a href="#yorumlar" className="font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors">Reviews</a>
           </nav>
           
           <div className="text-center flex-shrink-0 flex-1 xl:flex-none">
@@ -163,7 +165,7 @@ export default function Home() {
               WhatsApp
             </a>
             <a href="#hizli-randevu" className="hidden xl:inline-flex items-center justify-center border border-primary text-primary hover:bg-primary hover:text-on-primary px-6 py-2.5 transition-colors font-label-caps text-[0.625rem] uppercase tracking-[0.2em] rounded-none">
-              Randevu Al
+              Book Now
             </a>
           </div>
         </div>
@@ -178,26 +180,26 @@ export default function Home() {
               <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-secondary">EST. 2021 • EVİNİZDE KUSURSUZ SALON DENEYİMİ</span>
+                  <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-secondary">EST. 2021 • FLAWLESS SALON EXPERIENCE IN CARDIFF</span>
                 </div>
                 <h1 className="font-display-hero text-headline-lg lg:text-[4.25rem] leading-[1.08] text-primary tracking-[-0.025em]">
-                  Salon konforu, kendi <span className="italic font-normal font-headline-lg text-secondary">özel alanınızda.</span>
+                  Salon comfort, in your own <span className="italic font-normal font-headline-lg text-secondary">private space.</span>
                 </h1>
                 <p className="font-body-lead text-body-lead text-on-surface-variant font-light max-w-xl">
-                  Bölünmemiş birebir ilgi, üst düzey kesim teknikleri, organik renklendirme işlemleri ve ardında sıfır iz bırakan kusursuz ayrılış. Tüm profesyonel ekipmanımızla kapınıza geliyoruz.
+                  Undivided one-on-one attention, high-end cutting techniques, organic colouring processes, and a flawless departure leaving zero trace behind. We come to your door with all our professional equipment.
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   <a href="#hizli-randevu" className="inline-flex items-center justify-center bg-primary text-on-primary hover:bg-secondary hover:text-on-secondary px-8 py-4 transition-all duration-300 font-label-caps text-label-caps uppercase tracking-[0.2em] shadow-sm">
-                    Tarih Seçin
+                    Select Date
                   </a>
                   <a href="#hizmet-menusu" className="inline-flex items-center justify-center border border-on-surface/20 text-on-surface hover:border-secondary hover:text-secondary px-7 py-4 transition-all duration-300 font-label-caps text-label-caps uppercase tracking-[0.18em]">
-                    Hizmet Menüsü
+                    Service Menu
                   </a>
                 </div>
                 <div className="pt-6 border-t border-outline-variant/30 flex items-center gap-3 text-on-surface-variant">
                   <ShieldCheck className="w-[18px] h-[18px] text-secondary shrink-0" />
                   <p className="font-body-diminished text-[0.75rem] tracking-wide">
-                    İstediğiniz lokasyonda profesyonel hizmet • Tam Mahremiyet Garantisi
+                    Professional service at your desired location • Full Privacy Guaranteed
                   </p>
                 </div>
               </div>
@@ -209,9 +211,9 @@ export default function Home() {
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-surface-container-lowest/95 backdrop-blur-sm px-5 py-3 border border-outline-variant/20 shadow-sm">
                       <div className="flex items-center gap-2.5">
                         <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                        <span className="font-label-caps text-label-caps uppercase text-on-surface tracking-[0.2em]">Evinizde Özel Seans</span>
+                        <span className="font-label-caps text-label-caps uppercase text-on-surface tracking-[0.2em]">Private Home Session</span>
                       </div>
-                      <span className="hidden sm:inline font-price-tabular text-price-tabular text-on-surface-variant">Rezervasyon: Sinan Yıldırım</span>
+                      <span className="hidden sm:inline font-price-tabular text-price-tabular text-on-surface-variant">Booking: Sinan Yildirim</span>
                     </div>
                   </div>
                 </div>
@@ -224,23 +226,23 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
               <div className="order-2 lg:order-1 space-y-8">
                 <div className="space-y-4">
-                  <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">VİZYON & HİKAYEMİZ</span>
-                  <h2 className="font-display-hero text-headline-md md:text-headline-lg text-primary leading-tight">Zamanın ve Mekanın Ötesinde Bir Dokunuş</h2>
+                  <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">VISION & OUR STORY</span>
+                  <h2 className="font-display-hero text-headline-md md:text-headline-lg text-primary leading-tight">A Touch Beyond Time and Space</h2>
                 </div>
                 <div className="space-y-6 font-body-regular text-body-regular text-on-surface-variant font-light leading-relaxed">
                   <p>
-                    Yıllarca en prestijli salonlarda, cemiyet hayatının önde gelen isimlerine hizmet verdikten sonra, gerçek lüksün aslında <strong>"mahremiyet ve kişiselleştirilmiş zaman"</strong> olduğuna karar verdim.
+                    After years of serving prominent figures of high society in the most prestigious salons, I realized that true luxury is actually <strong>"privacy and personalized time"</strong>.
                   </p>
                   <p>
-                    Sinan Yıldırım Private Hair Atelier; salonlardaki o yorucu gürültüden, bitmek bilmeyen bekleme sürelerinden ve asistanlara devredilen işlemlerden kaçanlar için doğdu. Amacım, tamamen size ait olan bir alanda (evinizde, villanızda veya otel süitinizde) yalnızca sizin saçınızın karakteristiğine odaklanmak.
+                    Sinan Yildirim Private Hair Atelier was born for those who escape the exhausting noise of salons, endless waiting times, and treatments handed over to assistants. My goal is to focus solely on the characteristics of your hair in a space entirely yours.
                   </p>
                   <p>
-                    İsviçre çeliği makaslarımızdan tutun, kullandığımız organik boya pigmentlerine kadar her bir detay, evinizde sıfır iz bırakarak size kusursuz bir deneyim yaşatmak için tasarlandı.
+                    From our Swiss steel scissors to the organic color pigments we use, every detail is designed to give you a flawless experience leaving zero trace in your home.
                   </p>
                 </div>
                 <div className="pt-4 border-t border-outline-variant/30">
                   <span className="font-serif italic text-3xl text-primary block mt-4">Sinan Yıldırım</span>
-                  <span className="font-label-caps text-[0.625rem] uppercase tracking-widest text-secondary block mt-2">Kurucu & Baş Tasarımcı</span>
+                  <span className="font-label-caps text-[0.625rem] uppercase tracking-widest text-secondary block mt-2">Founder & Lead Designer</span>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
@@ -248,7 +250,7 @@ export default function Home() {
                   <div className="w-full h-full overflow-hidden bg-surface-container relative">
                     <img src="/sinan-profile.jpg" className="w-full h-full object-cover grayscale" alt="Sinan Yıldırım Story" />
                     <div className="absolute top-4 left-4 bg-surface-container-lowest/90 px-3.5 py-1.5 border border-outline-variant/30">
-                      <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Kişisel Atelier Vizyonu</span>
+                      <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Personal Atelier Vision</span>
                     </div>
                   </div>
                 </div>
@@ -259,8 +261,8 @@ export default function Home() {
           {/* SECTION 3: EVDE PROFESYONEL HİZMET FARKI */}
           <section className="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-2xl">
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-              <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">KUSURSUZ VE ZAHMETSİZ</span>
-              <h2 className="font-display-hero text-headline-lg text-primary uppercase tracking-tight">SALON STANDARTLARI, YOLCULUK ZAHMETİ OLMADAN.</h2>
+              <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">FLAWLESS AND EFFORTLESS</span>
+              <h2 className="font-display-hero text-headline-lg text-primary uppercase tracking-tight">SALON STANDARDS, WITHOUT THE TRAVEL HASSLE.</h2>
               <div className="w-12 h-[1px] bg-secondary mx-auto mt-4"></div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
@@ -269,168 +271,124 @@ export default function Home() {
                   <div className="aspect-[4/3] sm:aspect-[1/1] overflow-hidden bg-surface-container relative">
                     <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?q=80&w=1200&auto=format&fit=crop" alt="Professional Tools" />
                     <div className="absolute top-4 left-4 bg-surface-container-lowest/90 px-3.5 py-1.5 border border-outline-variant/30">
-                      <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Profesyonel Ekipmanlar</span>
+                      <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Professional Equipment</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="lg:col-span-6 space-y-10 pl-0 lg:pl-6">
+              <div className="lg:col-span-6 space-y-8 pl-0 lg:pl-6">
                 <div className="group border-l-2 border-outline-variant/50 hover:border-secondary pl-6 transition-colors duration-300">
                   <div className="flex items-baseline gap-3 mb-2">
-                    <span className="font-label-caps text-secondary text-label-caps uppercase tracking-[0.25em]">Prensip 01</span>
+                    <span className="font-label-caps text-secondary text-label-caps uppercase tracking-[0.25em]">Principle 01</span>
                     <span className="text-outline-variant text-[11px]">•</span>
-                    <h3 className="font-headline-sm text-headline-sm text-primary">Eksiksiz Donanım ve Temizlik</h3>
+                    <h3 className="font-headline-sm text-headline-sm text-primary">Equipment Anywhere in Cardiff</h3>
                   </div>
                   <p className="font-body-regular text-body-regular text-on-surface-variant font-light leading-relaxed">
-                    Salon kalitesindeki tüm profesyonel kesim, boya, fön ve şekillendirme ekipmanlarımızla evinizin konforuna geliyoruz. İşlem bittikten sonra alanınızı tek bir saç teli veya leke bırakmadan, ilk anki temizliğiyle teslim ediyoruz.
+                    We bring all our professional salon-quality cutting, coloring, and blow-dry equipment to the comfort of your home across Cardiff. Post-treatment, we leave your space spotless.
                   </p>
                 </div>
                 <div className="group border-l-2 border-outline-variant/50 hover:border-secondary pl-6 transition-colors duration-300">
                   <div className="flex items-baseline gap-3 mb-2">
-                    <span className="font-label-caps text-secondary text-label-caps uppercase tracking-[0.25em]">Prensip 02</span>
+                    <span className="font-label-caps text-secondary text-label-caps uppercase tracking-[0.25em]">Principle 02</span>
                     <span className="text-outline-variant text-[11px]">•</span>
-                    <h3 className="font-headline-sm text-headline-sm text-primary">Bölünmemiş Birebir İlgi</h3>
+                    <h3 className="font-headline-sm text-headline-sm text-primary">Undivided Attention</h3>
                   </div>
                   <p className="font-body-regular text-body-regular text-on-surface-variant font-light leading-relaxed">
-                    Salon gürültüsü yok, bekleme sırası yok, aynı anda ilgilenilen başka bir müşteri yok. Sinan Yıldırım randevu süresince yalnızca sizin saçınızın yapısına, yüz hatlarınıza ve kişisel isteklerinize odaklanır.
+                    No salon noise, no waiting lines. During your appointment, we focus entirely on your hair structure, facial features, and personal requests.
+                  </p>
+                </div>
+                <div className="group border-l-2 border-outline-variant/50 hover:border-secondary pl-6 transition-colors duration-300">
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="font-label-caps text-secondary text-label-caps uppercase tracking-[0.25em]">Principle 03</span>
+                    <span className="text-outline-variant text-[11px]">•</span>
+                    <h3 className="font-headline-sm text-headline-sm text-primary">Salon Option Available</h3>
+                  </div>
+                  <p className="font-body-regular text-body-regular text-on-surface-variant font-light leading-relaxed">
+                    For guests who do not prefer home service, we can host you at our specially rented salon chair in Cardiff. Location details are provided after booking.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* SECTION 4: ŞEFFAF HİZMET MENÜSÜ & TARİFELER */}
+          {/* SECTION 4: SERVICE MENU & PRICING */}
           <section className="w-full bg-surface-container-low py-space-2xl border-t border-outline-variant/25 scroll-mt-[140px]" id="hizmet-menusu">
             <div className="max-w-7xl mx-auto px-margin md:px-margin-desktop">
               <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div className="space-y-2">
-                  <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">2025/2026 TASARIM REPERTUARI</span>
-                  <h2 className="font-display-hero text-headline-lg text-primary">Hizmet Menüsü & Tarifeler</h2>
-                  <p className="font-body-diminished text-body-diminished text-on-surface-variant">Tüm profesyonel malzemeler ve işlem sonrası temizlik protokolü tarife kapsamındadır.</p>
+                  <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">2025/2026 DESIGN REPERTOIRE</span>
+                  <h2 className="font-display-hero text-headline-lg text-primary">Service Menu & Tarifeler</h2>
+                  <p className="font-body-diminished text-body-diminished text-on-surface-variant">All professional materials and post-treatment cleaning protocols are included in the price.</p>
                 </div>
                 <div className="flex flex-wrap gap-6 border-b border-outline-variant/30 w-full md:w-auto">
                   <button 
-                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === 'all' ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
-                    onClick={() => setSelectedCategory('all')}
-                  >Tümü</button>
+                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === "Women's Haircut" ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
+                    onClick={() => setSelectedCategory("Women's Haircut")}
+                  >Women's Haircut</button>
                   <button 
-                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === 'gelin' ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
-                    onClick={() => setSelectedCategory('gelin')}
-                  >Gelin & Davet</button>
+                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === "Women's Colouring" ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
+                    onClick={() => setSelectedCategory("Women's Colouring")}
+                  >Women's Colouring</button>
                   <button 
-                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === 'renk' ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
-                    onClick={() => setSelectedCategory('renk')}
-                  >Boya & Renklendirme</button>
+                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === "Women's Treatments & Perm" ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
+                    onClick={() => setSelectedCategory("Women's Treatments & Perm")}
+                  >Women's Treatments & Perm</button>
                   <button 
-                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === 'kesim' ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
-                    onClick={() => setSelectedCategory('kesim')}
-                  >Kesim & Fön</button>
+                    className={`pb-3 font-label-caps text-label-caps uppercase tracking-wider transition-all border-b-2 ${selectedCategory === "Men's Haircut" ? 'border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary'}`}
+                    onClick={() => setSelectedCategory("Men's Haircut")}
+                  >Men's Haircut</button>
                 </div>
               </div>
-              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
                 <AnimatePresence mode="popLayout">
-                  {(selectedCategory === 'all' || selectedCategory === 'gelin') && (
+                  {servicesData.filter(service => {
+                    if (selectedCategory === "Women's Treatments & Perm") return service.category === "Women's Treatments" || service.category === "Women's Perm";
+                    return service.category === selectedCategory;
+                  }).map((service, index) => (
                     <motion.div 
                       layout
-                      key="gelin"
+                      key={`${service.category}-${service.title}-${index}`}
                       initial={{ opacity: 0, scale: 0.95, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: -10 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="bg-surface-container-lowest p-6 border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-colors duration-200"
+                      className="bg-surface-container-lowest p-5 border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-colors duration-200"
                     >
                       <div>
                         <div className="flex justify-between items-baseline border-b border-outline-variant/30 pb-3 mb-3">
                           <div>
-                            <span className="font-label-caps text-[0.625rem] text-secondary uppercase tracking-[0.2em] block mb-1">İMZA DÜĞÜN HİZMETİ</span>
-                            <h3 className="font-headline-sm text-headline-sm text-primary">Gelin Saçı Tasarımı</h3>
+                            <span className="font-label-caps text-[0.625rem] text-secondary uppercase tracking-[0.2em] block mb-1">{service.category}</span>
+                            <h3 className="font-headline-sm text-[1.125rem] text-primary">{service.title}</h3>
                           </div>
-                          <div className="text-right">
-                            <span className="font-price-tabular text-price-tabular text-primary font-semibold block">3500 ₺</span>
-                            <span className="font-body-diminished text-[0.75rem] text-on-surface-variant">Özel Seans</span>
-                          </div>
-                        </div>
-                        <p className="font-body-regular text-body-diminished text-on-surface-variant font-light leading-relaxed">
-                          Ön prova seansı, düğün sabahı evinizde özel saç tasarımı, duvak/taç yerleşimi ve hazırlık sürecinde ihtiyacınız olan stres yönetimi.
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {(selectedCategory === 'all' || selectedCategory === 'renk') && (
-                    <motion.div 
-                      layout
-                      key="renk"
-                      initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="bg-surface-container-lowest p-6 border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-colors duration-200"
-                    >
-                      <div>
-                        <div className="flex justify-between items-baseline border-b border-outline-variant/30 pb-3 mb-3">
-                          <div>
-                            <span className="font-label-caps text-[0.625rem] text-secondary uppercase tracking-[0.2em] block mb-1">BOYUTLANDIRICI SANAT</span>
-                            <h3 className="font-headline-sm text-headline-sm text-primary">Balayaj & Organik Renklendirme</h3>
-                          </div>
-                          <div className="text-right">
-                            <span className="font-price-tabular text-price-tabular text-primary font-semibold block">2850 ₺<span className="font-normal text-xs text-on-surface-variant">'den</span></span>
+                          <div className="text-right whitespace-nowrap ml-4">
+                            <span className="font-price-tabular text-[1.25rem] text-primary font-semibold block">{service.currency === 'GBP' ? '£' : ''}{service.price} {service.currency !== 'GBP' ? service.currency : ''}</span>
+                            {service.duration_minutes && <span className="font-body-diminished text-[0.75rem] text-on-surface-variant">{service.duration_minutes} min</span>}
                           </div>
                         </div>
-                        <p className="font-body-regular text-body-diminished text-on-surface-variant font-light leading-relaxed">
-                          Serbest el fırça tekniği, saçı yıpratmayan kaliteli açıcılar, özel bakım destekli boya işlemleri ve kişiye özel tonlama cilası.
-                        </p>
                       </div>
                     </motion.div>
-                  )}
-                  
-                  {(selectedCategory === 'all' || selectedCategory === 'kesim') && (
-                    <motion.div 
-                      layout
-                      key="kesim"
-                      initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="bg-surface-container-lowest p-6 border border-outline-variant/30 flex flex-col justify-between hover:border-secondary transition-colors duration-200"
-                    >
-                      <div>
-                        <div className="flex justify-between items-baseline border-b border-outline-variant/30 pb-3 mb-3">
-                          <div>
-                            <span className="font-label-caps text-[0.625rem] text-secondary uppercase tracking-[0.2em] block mb-1">MİMARİ DOKUNUŞ</span>
-                            <h3 className="font-headline-sm text-headline-sm text-primary">Kişiselleştirilmiş Kesim & Fön</h3>
-                          </div>
-                          <div className="text-right">
-                            <span className="font-price-tabular text-price-tabular text-primary font-semibold block">1200 ₺</span>
-                          </div>
-                        </div>
-                        <p className="font-body-regular text-body-diminished text-on-surface-variant font-light leading-relaxed">
-                          Yüz hatlarınıza en uygun geometrik kesim, kırıkların temizlenmesi ve saçınızın yapısına uygun ipeksi, kalıcı fön işlemi.
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
+                  ))}
                 </AnimatePresence>
               </motion.div>
               <div className="mt-10 p-5 bg-surface-container flex flex-col sm:flex-row items-center justify-between gap-4 border border-outline-variant/30">
                 <div className="flex items-center gap-3">
                   <Car className="w-[22px] h-[22px] text-secondary shrink-0" />
-                  <span className="font-body-diminished text-body-diminished text-on-surface">Merkezi noktalara ulaşım bedeli fiyata dahildir. Uzak mesafeler için randevu esnasında bilgi verilir.</span>
+                  <span className="font-body-diminished text-body-diminished text-on-surface">Cardiff travel costs are included. (You may also opt for our salon service).</span>
                 </div>
-                <span className="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Kusursuz Hizmet Garantisi</span>
+                <span className="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Flawless Service Guarantee</span>
               </div>
             </div>
           </section>
 
-          {/* SECTION: GALERİ / PORTFOLYO */}
+          {/* SECTION: GALERİ / PORTFOLIO */}
           <section className="w-full bg-surface py-space-2xl border-t border-outline-variant/25 scroll-mt-[140px]" id="galeri">
             <div className="max-w-7xl mx-auto px-margin md:px-margin-desktop">
               <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="space-y-3 max-w-xl">
-                  <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">PORTFOLYO</span>
-                  <h2 className="font-display-hero text-headline-lg text-primary">İmza Görünümler</h2>
+                  <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">PORTFOLIO</span>
+                  <h2 className="font-display-hero text-headline-lg text-primary">Signature Looks</h2>
                   <p className="font-body-regular text-body-regular text-on-surface-variant font-light">
-                    Kişiye özel tasarlanmış renk geçişleri, kusursuz balayaj uygulamaları ve yapısal kesimlerden örnekler.
+                    Examples of custom-designed color transitions, flawless balayage applications, and structural cuts.
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -446,7 +404,7 @@ export default function Home() {
                     <img src={item.src} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt={item.title} />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                       <div className="bg-surface/95 text-primary px-5 py-2 font-label-caps text-[0.6rem] uppercase tracking-[0.2em] backdrop-blur-sm border border-primary/20">İncele</div>
+                       <div className="bg-surface/95 text-primary px-5 py-2 font-label-caps text-[0.6rem] uppercase tracking-[0.2em] backdrop-blur-sm border border-primary/20">View</div>
                     </div>
                     <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0 z-10">
                       <span className="font-label-caps text-[0.6875rem] uppercase tracking-widest text-on-primary">{item.title}</span>
@@ -457,15 +415,15 @@ export default function Home() {
               
               <div className="mt-12 text-center">
                 <button onClick={() => openGallery('all', null)} className="inline-flex items-center justify-center border border-primary text-primary hover:bg-primary hover:text-on-primary px-10 py-3.5 transition-colors duration-300 font-label-caps text-[0.6875rem] uppercase tracking-[0.2em]">
-                  Tüm Portfolyoyu İncele ({galleryItems.length} Görsel)
+                  View Full Portfolio ({galleryItems.length} Images)
                 </button>
               </div>
             </div>
           </section>
 
-          {/* YENİ BÖLÜM: DİNAMİK MARQUEE YORUMLAR (Framer Motion) */}
+          {/* NEW SECTION: DYNAMIC MARQUEE TESTIMONIALS (Framer Motion) */}
           <section className="w-full bg-primary text-on-primary py-5 overflow-hidden border-y border-outline-variant/20 relative flex items-center">
-            {/* Kenar karartmaları (Gradient Mask) */}
+            {/* Gradient Mask for edges */}
             <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-primary to-transparent z-10 pointer-events-none"></div>
             <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-primary to-transparent z-10 pointer-events-none"></div>
             
@@ -480,19 +438,19 @@ export default function Home() {
                     <div className="flex items-center text-secondary gap-0.5">
                       <Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" />
                     </div>
-                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"Evimde salon kalitesini yaşamak harikaydı." – Zeynep A.</span>
+                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"Experiencing salon quality at home was amazing." – Zeynep A.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center text-secondary gap-0.5">
                       <Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" />
                     </div>
-                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"Gürültü yok, sıra yok. Sadece size odaklanıyor." – Elif T.</span>
+                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"No noise, no lines. Focused entirely on you." – Elif T.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center text-secondary gap-0.5">
                       <Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" />
                     </div>
-                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"Düğün sabahımın kurtarıcısı oldu." – Ceyda K.</span>
+                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"He was the savior of my wedding morning." – Ceyda K.</span>
                   </div>
                   <div className="flex items-center gap-3 opacity-60">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -507,11 +465,11 @@ export default function Home() {
             </motion.div>
           </section>
 
-          {/* SECTION 5: FOTOĞRAF GALERİSİ & MÜŞTERİ YORUMU CAROUSEL */}
+          {/* SECTION 5: PHOTO GALLERY & TESTIMONIAL CAROUSEL */}
           <section className="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-xl scroll-mt-[140px]" id="yorumlar">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
-              <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-secondary">MUTLU MÜŞTERİLER</span>
-              <h2 className="font-display-hero text-headline-lg text-primary">Kendi Alanınızda Mükemmellik</h2>
+              <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-secondary">HAPPY CLIENTS</span>
+              <h2 className="font-display-hero text-headline-lg text-primary">Excellence in Your Own Space</h2>
             </div>
             
             <div className="grid items-stretch">
@@ -585,26 +543,37 @@ export default function Home() {
             </div>
           </section>
 
-          {/* SECTION 6: VIP REZERVASYON (MODAL TETİKLEYİCİ) */}
+          {/* SECTION 6: VIP BOOKING (INTEGRATED CALENDAR) */}
           <section className="w-full bg-surface-container-lowest py-space-2xl border-t border-outline-variant/25 scroll-mt-[140px]" id="hizli-randevu">
-            <div className="max-w-4xl mx-auto px-margin md:px-margin-desktop text-center">
+            <div className="max-w-6xl mx-auto px-margin md:px-margin-desktop text-center">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-secondary/10 border border-secondary/20 mb-8">
                 <span className="w-1.5 h-1.5 rounded-none bg-secondary"></span>
-                <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.22em] text-secondary">VİP REZERVASYON</span>
+                <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.22em] text-secondary">VIP BOOKING</span>
               </div>
-              <h2 className="font-display-hero text-[2.5rem] md:text-headline-lg text-primary mb-6">Kendi Zamanınızı Seçin</h2>
+              <h2 className="font-display-hero text-[2.5rem] md:text-headline-lg text-primary mb-6">Create Your Private Time</h2>
               <p className="font-body-regular text-body-regular text-on-surface-variant font-light max-w-xl mx-auto mb-12">
-                Sayfadan ayrılmadan size en uygun hizmeti ve saati seçmek için özel takvimimizi kullanın. Seçiminiz anında ajandamıza yansıyacaktır.
+                To ensure a flawless design process, select a suitable date and time from the calendar and fill out the requested info completely.
               </p>
               
-              <button 
-                data-cal-link="burak-kaya"
-                data-cal-config='{"layout":"month_view","theme":"light"}'
-                className="inline-flex items-center justify-center gap-3 bg-primary text-on-primary hover:bg-secondary hover:text-on-secondary px-8 md:px-12 py-5 md:py-6 transition-all duration-300 font-label-caps text-[0.6875rem] md:text-sm uppercase tracking-[0.25em] shadow-sm"
-              >
-                <Calendar className="w-5 h-5" />
-                Takvimi Aç & Randevu Al
-              </button>
+              <div className="flex justify-center mb-8">
+                <button 
+                  onClick={() => setCalKey(prev => prev + 1)} 
+                  className="inline-flex items-center gap-2 text-[0.6875rem] font-label-caps uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  Back to Service Selection
+                </button>
+              </div>
+              
+              <div className="w-full min-h-[650px] relative">
+                <Cal
+                  key={calKey}
+                  namespace="randevu"
+                  calLink="burak-kaya"
+                  style={{ width: "100%", height: "100%", minHeight: "650px", overflow: "scroll" }}
+                  config={{ layout: "month_view", theme: "light" }}
+                />
+              </div>
             </div>
           </section>
 
@@ -612,13 +581,17 @@ export default function Home() {
           <section className="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-xl">
             <div className="bg-primary text-on-primary p-8 md:p-12 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="space-y-3 text-center lg:text-left z-10 max-w-2xl">
-                <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.25em] text-secondary-fixed">KİŞİYE ÖZEL İLETİŞİM</span>
-                <h3 className="font-display-hero text-headline-sm md:text-headline-md tracking-tight">Özel Etkinlik veya Gelinlik Provası İçin Doğrudan Arayın</h3>
+                <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.25em] text-secondary-fixed">PERSONALIZED CONTACT</span>
+                <h3 className="font-display-hero text-headline-sm md:text-headline-md tracking-tight">Call Directly for Special Events or Bridal Trials</h3>
                 <p className="font-body-regular text-body-diminished text-surface-container-high font-light">
-                  Büyük davetler, çoklu konuk hazırlıkları veya toplu işlemler için detayları konuşalım.
+                  Let's discuss details for large events, multiple guest preparations, or group bookings.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0 z-10">
+                <a href="https://www.instagram.com/sinanyildirim__hair_designer/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high px-6 py-4 font-label-caps text-label-caps uppercase tracking-[0.16em] transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  Instagram
+                </a>
                 <a href="tel:+905550000000" className="inline-flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high px-6 py-4 font-label-caps text-label-caps uppercase tracking-[0.16em] transition-colors">
                   <PhoneCall className="w-[18px] h-[18px] text-secondary" />
                   +90 555 000 00 00
@@ -637,32 +610,34 @@ export default function Home() {
             <div className="md:col-span-1 space-y-4">
               <p className="font-headline-sm text-headline-sm uppercase tracking-wider text-primary">Sinan Yıldırım</p>
               <p className="font-label-caps text-label-caps uppercase text-secondary tracking-[0.2em]">Private Hair Atelier</p>
-              <p className="font-body-diminished text-body-diminished text-on-surface-variant mt-2">Evinizin konforunda, tamamen size özel profesyonel saç tasarım ve renklendirme hizmeti.</p>
+              <p className="font-body-diminished text-body-diminished text-on-surface-variant mt-2">Completely customized professional hair design and coloring service in the comfort of your home.</p>
             </div>
             <div className="space-y-3">
-              <p className="font-label-caps text-label-caps uppercase tracking-[0.18em] text-on-surface">Hizmet Alanları</p>
+              <p className="font-label-caps text-label-caps uppercase tracking-[0.18em] text-on-surface">Service Areas</p>
               <ul className="font-body-diminished text-body-diminished text-on-surface-variant space-y-1.5">
-                <li>Evde Kesim & Renklendirme</li>
-                <li>Düğün & Gelin Saçı Tasarımı</li>
-                <li>Özel Gün & Davet Hazırlığı</li>
-                <li>Grup/Aile Randevuları</li>
+                <li>Home Cutting & Coloring</li>
+                <li>Wedding & Bridal Hair Design</li>
+                <li>Special Occasion & Event Prep</li>
+                <li>Group/Family Appointments</li>
               </ul>
             </div>
             <div className="space-y-3">
-              <p className="font-label-caps text-label-caps uppercase tracking-[0.18em] text-on-surface">İletişim & Randevu</p>
+              <p className="font-label-caps text-label-caps uppercase tracking-[0.18em] text-on-surface">Contact & Booking</p>
               <ul className="font-body-diminished text-body-diminished text-on-surface-variant space-y-1.5">
-                <li>Randevu: Salı – Pazar</li>
+                <li>Hours: Mon - Sat (09:00 - 19:00)</li>
+                <li>Sunday: Closed</li>
+                <li>Location: Cardiff, UK</li>
                 <li>WhatsApp: +90 555 000 00 00</li>
                 <li>E-posta: iletisim@sinanyildirim.com</li>
               </ul>
             </div>
             <div className="space-y-3">
-              <p className="font-label-caps text-label-caps uppercase tracking-[0.18em] text-on-surface">Temizlik & Profesyonellik</p>
-              <p className="font-body-diminished text-body-diminished text-on-surface-variant">Tüm ekipmanlar her işlem öncesi sterilize edilir. İşlem sonrası evinizde tek bir iz veya leke bırakılmadan temizlik sağlanır.</p>
+              <p className="font-label-caps text-label-caps uppercase tracking-[0.18em] text-on-surface">Cleanliness & Professionalism</p>
+              <p className="font-body-diminished text-body-diminished text-on-surface-variant">All equipment is sterilized before each process. Post-treatment, your home is left spotless with zero trace or stain.</p>
             </div>
           </div>
           <div className="pt-space-md flex flex-col md:flex-row items-center justify-between text-on-surface-variant font-label-caps text-label-caps gap-4">
-            <p>© 2025 Sinan Yıldırım Hair Atelier. Tüm Hakları Saklıdır.</p>
+            <p>© 2025 Sinan Yıldırım Hair Atelier. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -677,12 +652,12 @@ export default function Home() {
             {/* Sticky Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-5 md:px-8 py-4 md:py-5 border-b border-outline-variant/20 bg-surface shadow-sm z-10">
               <div>
-                <p className="font-label-caps text-[0.6rem] uppercase tracking-[0.22em] text-secondary mb-2">Sinan Yıldırım • Atelier Galeri</p>
+                <p className="font-label-caps text-[0.6rem] uppercase tracking-[0.22em] text-secondary mb-2">Sinan Yıldırım • Atelier Gallery</p>
                 <div className="flex items-center gap-5 overflow-x-auto hide-scrollbar">
                   {['all', 'gelin', 'renk', 'kesim'].map(f => (
                     <button key={f} onClick={() => handleGalleryFilter(f)}
                       className={`font-label-caps text-[0.6875rem] uppercase tracking-widest whitespace-nowrap pb-0.5 transition-colors ${galleryFilter === f ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>
-                      {f === 'all' ? 'Tümü' : f === 'gelin' ? 'Gelin' : f === 'renk' ? 'Renk' : 'Kesim'}
+                      {f === 'all' ? 'All' : f === 'gelin' ? 'Bridal' : f === 'renk' ? 'Color' : 'Cut'}
                     </button>
                   ))}
                 </div>
@@ -714,7 +689,7 @@ export default function Home() {
                       <img src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-                        <span className="bg-surface/95 text-primary text-[0.6rem] uppercase tracking-[0.2em] font-label-caps px-4 py-1.5 border border-primary/20">İncele</span>
+                        <span className="bg-surface/95 text-primary text-[0.6rem] uppercase tracking-[0.2em] font-label-caps px-4 py-1.5 border border-primary/20">View</span>
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
                         <span className="text-[0.6rem] uppercase tracking-widest text-on-primary/70 font-label-caps block mb-0.5">{item.category === 'gelin' ? 'Gelin' : item.category === 'renk' ? 'Renk' : 'Kesim'}</span>
@@ -769,7 +744,7 @@ export default function Home() {
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-outline-variant/30 bg-surface-container-low">
                         <span className="w-1.5 h-1.5 bg-secondary block" />
                         <span className="font-label-caps text-[0.625rem] uppercase tracking-[0.2em] text-secondary">
-                          {filteredGallery[galleryIndex]?.category === 'gelin' ? 'GELİN TASARIMI' : filteredGallery[galleryIndex]?.category === 'renk' ? 'ORGANİK RENKLENDİRME' : 'KİŞİSEL KESİM'}
+                          {filteredGallery[galleryIndex]?.category === 'gelin' ? 'BRIDAL DESIGN' : filteredGallery[galleryIndex]?.category === 'renk' ? 'ORGANIC COLOR' : 'PERSONAL CUT'}
                         </span>
                       </div>
                       <h2 className="font-display-hero text-2xl md:text-3xl text-primary leading-tight">

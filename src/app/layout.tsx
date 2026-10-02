@@ -4,7 +4,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Sinan Yıldırım | Private Hair Atelier",
-  description: "Evinizin konforunda, size özel kişiselleştirilmiş premium saç tasarım ve şekillendirme hizmeti. Bekleme yok, salon gürültüsü yok.",
+  description: "Personalized premium hair design and styling service in the comfort of your home. No waiting lines, no salon noise.",
 };
 
 export default function RootLayout({

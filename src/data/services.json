@@ -1,0 +1,249 @@
+[
+  {
+    "category": "Women's Haircut",
+    "title": "Cut & Finish (30 mins)",
+    "price": 64,
+    "currency": "GBP",
+    "duration_minutes": 30
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Cut & Finish (45 mins)",
+    "price": 71,
+    "currency": "GBP",
+    "duration_minutes": 45
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Cut & Finish (1 hour)",
+    "price": 76,
+    "currency": "GBP",
+    "duration_minutes": 60
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Long Hair Blowdry (45 mins)",
+    "price": 50,
+    "currency": "GBP",
+    "duration_minutes": 45
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Blowdry or Set",
+    "price": 40,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Rough dry",
+    "price": 7,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Wet Cut",
+    "price": 54,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Dry Trim",
+    "price": 49,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Girls Cut & Finish (14 years old & below) (30 mins)",
+    "price": 45,
+    "currency": "GBP",
+    "duration_minutes": 30
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Girls Cut & Finish (14 years old & below) (45 mins)",
+    "price": 52,
+    "currency": "GBP",
+    "duration_minutes": 45
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Girls Dry Cut (14 years old & below)",
+    "price": 30,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Girls Dry Cut (7 years old & below)",
+    "price": 22,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Long Hair Design (incl of shampoo & blowdry)",
+    "price": 75,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Long Hair Design",
+    "price": 60,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Curls (Short)",
+    "price": 25,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Haircut",
+    "title": "Curls (Long)",
+    "price": 30,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Illumina",
+    "price": 62,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Permanent Colour (Roots)",
+    "price": 57,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Permanent Colour (Full Head)",
+    "price": 83,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "T-Section Colour",
+    "price": 35,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Semi - Permanent Colour (Roots)",
+    "price": 57,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Semi - Permanent Colour (Full Head)",
+    "price": 60,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Silver Foil Lights (Half Head)",
+    "price": 81,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Silver Foil Lights (Full Head)",
+    "price": 92,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Balayage",
+    "price": 120,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "T Section Foils",
+    "price": 56,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Bleach (Roots)",
+    "price": 59,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Colouring",
+    "title": "Toner",
+    "price": 39,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Perm",
+    "title": "A1 Perm",
+    "price": 75,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Treatments",
+    "title": "SP Intensive Treatment",
+    "price": 12,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Treatments",
+    "title": "Philip Kingsley Hair Treatment",
+    "price": 15,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Treatments",
+    "title": "Philip Kingsley Hair & Scalp Treatment",
+    "price": 25,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Treatments",
+    "title": "SP Hair Alchemy Treatment",
+    "price": 22,
+    "currency": "GBP"
+  },
+  {
+    "category": "Women's Treatments",
+    "title": "Olaplex",
+    "price": 22,
+    "currency": "GBP"
+  },
+  {
+    "category": "Men's Haircut",
+    "title": "Men's Cut & Finish",
+    "price": 43,
+    "currency": "GBP"
+  },
+  {
+    "category": "Men's Haircut",
+    "title": "Men's Dry Trim",
+    "price": 36,
+    "currency": "GBP"
+  },
+  {
+    "category": "Men's Haircut",
+    "title": "Men's Color Camo (10 min)",
+    "price": 37,
+    "currency": "GBP",
+    "duration_minutes": 10
+  },
+  {
+    "category": "Men's Haircut",
+    "title": "Boys Cut & Finish (4-15 years old)",
+    "price": 29,
+    "currency": "GBP"
+  },
+  {
+    "category": "Men's Haircut",
+    "title": "Boys Dry Trim (8-14 years old)",
+    "price": 25,
+    "currency": "GBP"
+  },
+  {
+    "category": "Men's Haircut",
+    "title": "Boys Dry Trim (7 years old & below)",
+    "price": 18,
+    "currency": "GBP"
+  }
+]
