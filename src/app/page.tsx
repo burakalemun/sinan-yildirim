@@ -71,13 +71,13 @@ export default function Home() {
       detailText: "Perfect Focus in Your Own Space."
     },
     { 
-      text: "I finally found the flawless cut I've been looking for for years right in my living room. Extremely professional, amazing care leaving not a single strand of hair behind.", 
-      author: "Ceyda K.", 
-      context: "Home Cut & Blowdry — January 2025",
+      text: "I love my hair so much, thank you again! Sinan is incredibly accommodating with scheduling, always making time for my appointments even after my busy work hours. Extremely professional and flexible.", 
+      author: "Klaudia", 
+      context: "Regular Client — Private Cut",
       image1: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1200&auto=format&fit=crop", 
       image2: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1200&auto=format&fit=crop", 
-      detailTitle: "GEOMETRIC CUT",
-      detailText: "Zero Error Principle Tailored to Facial Features."
+      detailTitle: "TOTAL FLEXIBILITY",
+      detailText: "Appointments that adapt to your work and lifestyle."
     }
   ]
 
