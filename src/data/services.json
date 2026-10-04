@@ -22,31 +22,6 @@
   },
   {
     "category": "Women's Haircut",
-    "title": "Long Hair Blowdry (45 mins)",
-    "price": 50,
-    "currency": "GBP",
-    "duration_minutes": 45
-  },
-  {
-    "category": "Women's Haircut",
-    "title": "Blowdry or Set",
-    "price": 40,
-    "currency": "GBP"
-  },
-  {
-    "category": "Women's Haircut",
-    "title": "Rough dry",
-    "price": 7,
-    "currency": "GBP"
-  },
-  {
-    "category": "Women's Haircut",
-    "title": "Wet Cut",
-    "price": 54,
-    "currency": "GBP"
-  },
-  {
-    "category": "Women's Haircut",
     "title": "Dry Trim",
     "price": 49,
     "currency": "GBP"
@@ -75,12 +50,6 @@
     "category": "Women's Haircut",
     "title": "Girls Dry Cut (7 years old & below)",
     "price": 22,
-    "currency": "GBP"
-  },
-  {
-    "category": "Women's Haircut",
-    "title": "Long Hair Design (incl of shampoo & blowdry)",
-    "price": 75,
     "currency": "GBP"
   },
   {

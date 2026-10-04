@@ -82,18 +82,17 @@ export default function Home() {
   ]
 
   const galleryItems = [
-    { id: 1, category: 'renk', src: '/gallery/balyaj.jpg', title: 'Sun-Kissed Balayage', desc: 'Flawless blonde reflections achieved with freehand brush strokes over the natural hair tone.' },
-    { id: 2, category: 'gelin', src: '/gallery/gelin.jpg', title: 'Signature Bridal Design', desc: 'VIP preparation and professional styling focused solely on the bride, without the wedding day stress.' },
-    { id: 3, category: 'kesim', src: '/gallery/kesim.jpg', title: 'Layered Cut & Blowdry', desc: "Modern layered cut enhancing the hair's natural volume, tailored to facial features." },
-    { id: 4, category: 'renk', src: '/gallery/renk.jpg', title: 'Home Salon Architecture (Color)', desc: 'Applying the most precise coloring processes by setting up all professional salon equipment in a room of your home.' },
-    { id: 5, category: 'kesim', src: '/gallery/fon.jpg', title: 'Flawless Blowdry & Care', desc: 'Silky blow-dry supporting natural volume, maintaining its hold throughout the day.' },
-    { id: 6, category: 'kesim', src: '/gallery/keratin.jpg', title: 'Personal Atelier Vision', desc: 'Flawless hair design emerging from unparalleled attention to detail in a time entirely dedicated to you.' },
-    { id: 7, category: 'kesim', src: '/gallery/home-session-1.jpg', title: 'Private Home Styling', desc: 'Bringing the professional salon experience directly to your living room.' },
-    { id: 8, category: 'kesim', src: '/gallery/home-session-2.jpg', title: 'Flawless Styling at Home', desc: 'Precision styling tailored to your comfort and schedule.' },
-    { id: 9, category: 'kesim', src: '/gallery/home-session-3.jpg', title: 'Comfort & Luxury', desc: 'Enjoying top-tier hair design without the stress of salon traffic.' },
-    { id: 10, category: 'kesim', src: '/gallery/extra4.jpg', title: 'Masterpiece Details', desc: 'Long-lasting form achieved with extra attention to detail during the cutting and styling phases.' },
-    { id: 11, category: 'renk', src: '/gallery/extra5.jpg', title: 'Bleaching & Coloring Process', desc: 'Protective color bleaching processes applied step-by-step without damaging the hair.' },
-    { id: 12, category: 'gelin', src: '/gallery/extra6.jpg', title: 'Special Event Prep', desc: 'Special occasion designs promising all-day hold and aesthetic integrity, not just hair.' },
+    { id: 1, category: 'renk', src: '/gallery/home-session-4.jpg', title: 'Coloring at Home', desc: 'Flawless blonde reflections achieved with professional equipment in your living room.' },
+    { id: 2, category: 'gelin', src: '/gallery/home-session-2.jpg', title: 'Signature Bridal Design', desc: 'VIP preparation and professional styling focused solely on the bride in her own space.' },
+    { id: 3, category: 'kesim', src: '/gallery/home-session-6.jpg', title: 'Layered Cut & Styling', desc: "Modern layered cut enhancing the hair's natural volume, tailored to your facial features." },
+    { id: 4, category: 'renk', src: '/gallery/home-session-5.jpg', title: 'Flawless Bleaching Process', desc: 'Applying the most precise coloring processes by setting up a professional station in a room of your home.' },
+    { id: 5, category: 'kesim', src: '/gallery/home-session-7.jpg', title: 'Flawless Styling & Care', desc: 'Silky styling supporting natural volume, maintaining its hold throughout the day.' },
+    { id: 6, category: 'kesim', src: '/gallery/home-session-1.jpg', title: 'Private Home Styling', desc: 'Bringing the professional salon experience directly to your living room.' },
+    { id: 7, category: 'kesim', src: '/gallery/home-session-3.jpg', title: 'Comfort & Luxury', desc: 'Enjoying top-tier hair design without the stress of salon traffic.' },
+    { id: 8, category: 'kesim', src: '/gallery/extra1.jpg', title: 'Precision Cuts', desc: 'Flawless hair design emerging from unparalleled attention to detail.' },
+    { id: 9, category: 'renk', src: '/gallery/extra2.jpg', title: 'Foil Highlighting', desc: 'Detailed highlighting processes tailored to your specific needs.' },
+    { id: 10, category: 'renk', src: '/gallery/home-session-8.jpg', title: 'In-Home Highlighting', desc: 'Professional foil highlighting performed comfortably in your own home.' },
+    { id: 11, category: 'kesim', src: '/gallery/home-session-9.jpg', title: 'Detailed Trim', desc: 'Precision hair cutting services at your convenience.' },
   ]
 
   const filteredGallery = galleryItems.filter(item => galleryFilter === 'all' || item.category === galleryFilter)
@@ -174,10 +173,10 @@ export default function Home() {
               <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
                 <div className="inline-flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-secondary">EST. 2021 • FLAWLESS SALON EXPERIENCE IN CARDIFF</span>
+                  <span className="font-label-caps text-label-caps uppercase tracking-[0.22em] text-secondary">EST. 2021 • FLAWLESS HOME SERVICE IN CARDIFF</span>
                 </div>
                 <h1 className="font-display-hero text-headline-lg lg:text-[4.25rem] leading-[1.08] text-primary tracking-[-0.025em]">
-                  Salon comfort, in your own <span className="italic font-normal font-headline-lg text-secondary">private space.</span>
+                  Premium comfort, in your own <span className="italic font-normal font-headline-lg text-secondary">private space.</span>
                 </h1>
                 <p className="font-body-lead text-body-lead text-on-surface-variant font-light max-w-xl">
                   Undivided one-on-one attention, high-end cutting techniques, organic colouring processes, and a flawless departure leaving zero trace behind. We come to your door with all our professional equipment.
@@ -200,7 +199,7 @@ export default function Home() {
               <div className="lg:col-span-7 relative">
                 <div className="relative bg-surface-container-low p-2 md:p-3 shadow-md">
                   <div className="relative aspect-[4/5] sm:aspect-[6/5] lg:aspect-[4/5] overflow-hidden bg-surface-container">
-                    <img className="w-full h-full object-cover grayscale-[8%] contrast-[1.02]" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2874&auto=format&fit=crop" alt="Hero Hair Styling Session" />
+                    <img className="w-full h-full object-cover grayscale-[8%] contrast-[1.02]" src="/gallery/home-session-2.jpg" alt="Premium Home Hair Styling Session" />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent pointer-events-none"></div>
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-surface-container-lowest/95 backdrop-blur-sm px-5 py-3 border border-outline-variant/20 shadow-sm">
                       <div className="flex items-center gap-2.5">
@@ -242,7 +241,7 @@ export default function Home() {
               <div className="order-1 lg:order-2">
                 <div className="relative aspect-[3/4] bg-surface-container-low p-3 md:p-4 shadow-sm border border-outline-variant/20">
                   <div className="w-full h-full overflow-hidden bg-surface-container relative">
-                    <img src="/sinan-profile.jpg" className="w-full h-full object-cover grayscale" alt="Sinan Yıldırım Story" />
+                    <img src="/sinan-profile.png" className="w-full h-full object-cover grayscale" alt="Sinan Yıldırım Story" />
                     <div className="absolute top-4 left-4 bg-surface-container-lowest/90 px-3.5 py-1.5 border border-outline-variant/30">
                       <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Personal Atelier Vision</span>
                     </div>
@@ -256,14 +255,14 @@ export default function Home() {
           <section className="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-2xl">
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
               <span className="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary">FLAWLESS AND EFFORTLESS</span>
-              <h2 className="font-display-hero text-headline-lg text-primary uppercase tracking-tight">SALON STANDARDS, WITHOUT THE TRAVEL HASSLE.</h2>
+              <h2 className="font-display-hero text-headline-lg text-primary uppercase tracking-tight">PREMIUM STANDARDS, WITHOUT THE TRAVEL HASSLE.</h2>
               <div className="w-12 h-[1px] bg-secondary mx-auto mt-4"></div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
               <div className="lg:col-span-6 relative">
                 <div className="bg-surface-container-low p-3 md:p-4 shadow-sm border border-outline-variant/20">
                   <div className="aspect-[4/3] sm:aspect-[1/1] overflow-hidden bg-surface-container relative">
-                    <img className="w-full h-full object-cover" src="/gallery/extra5.jpg" alt="Professional Salon Setup" />
+                    <img className="w-full h-full object-cover" src="/gallery/home-session-6.jpg" alt="Professional Home Setup" />
                     <div className="absolute top-4 left-4 bg-surface-container-lowest/90 px-3.5 py-1.5 border border-outline-variant/30">
                       <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Professional Equipment</span>
                     </div>
@@ -278,7 +277,7 @@ export default function Home() {
                     <h3 className="font-headline-sm text-headline-sm text-primary">Equipment Anywhere in Cardiff</h3>
                   </div>
                   <p className="font-body-regular text-body-regular text-on-surface-variant font-light leading-relaxed">
-                    We bring all our professional salon-quality cutting, coloring, and blow-dry equipment to the comfort of your home across Cardiff. Post-treatment, we leave your space spotless.
+                    We bring all our professional premium-quality cutting, coloring, and styling equipment to the comfort of your home across Cardiff. Post-treatment, we leave your space spotless.
                   </p>
                 </div>
                 <div className="group border-l-2 border-outline-variant/50 hover:border-secondary pl-6 transition-colors duration-300">
@@ -295,10 +294,10 @@ export default function Home() {
                   <div className="flex items-baseline gap-3 mb-2">
                     <span className="font-label-caps text-secondary text-label-caps uppercase tracking-[0.25em]">Principle 03</span>
                     <span className="text-outline-variant text-[11px]">•</span>
-                    <h3 className="font-headline-sm text-headline-sm text-primary">Salon Option Available</h3>
+                    <h3 className="font-headline-sm text-headline-sm text-primary">Spotless Finish</h3>
                   </div>
                   <p className="font-body-regular text-body-regular text-on-surface-variant font-light leading-relaxed">
-                    For guests who do not prefer home service, we can host you at our specially rented salon chair in Cardiff. Location details are provided after booking.
+                    We guarantee that after your session, your home is left as pristine as we found it. We carefully clean up all hair and materials before we leave.
                   </p>
                 </div>
               </div>
@@ -367,7 +366,7 @@ export default function Home() {
               <div className="mt-10 p-5 bg-surface-container flex flex-col sm:flex-row items-center justify-between gap-4 border border-outline-variant/30">
                 <div className="flex items-center gap-3">
                   <Car className="w-[22px] h-[22px] text-secondary shrink-0" />
-                  <span className="font-body-diminished text-body-diminished text-on-surface">Cardiff travel costs are included. (You may also opt for our salon service).</span>
+                  <span className="font-body-diminished text-body-diminished text-on-surface">Cardiff travel costs are included.</span>
                 </div>
                 <span className="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Flawless Service Guarantee</span>
               </div>
@@ -620,7 +619,7 @@ export default function Home() {
               <ul className="font-body-diminished text-body-diminished text-on-surface-variant space-y-1.5">
                 <li>Hours: Mon - Sat (09:00 - 19:00)</li>
                 <li>Sunday: Closed</li>
-                <li>Location: Cardiff, UK</li>
+                <li>Service Area: Cardiff, UK</li>
                 <li>WhatsApp: +44 7510 172732</li>
                 <li>E-posta: iletisim@sinanyildirim.com</li>
               </ul>
