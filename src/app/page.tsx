@@ -56,26 +56,26 @@ export default function Home() {
       text: "A quiet, calm, and absolutely flawless balayage. Having a top-tier stylist attend to my hair while sipping fresh coffee in my own home was wonderful. I will never return to salon traffic.", 
       author: "Zeynep A.", 
       context: "Private Home Session — March 2025",
-      image1: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop", 
-      image2: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1200&auto=format&fit=crop", 
+      image1: "/gallery/home-session-4.jpg", 
+      image2: "/gallery/home-session-5.jpg", 
       detailTitle: "TEXTURE & MOVEMENT",
       detailText: "Far from Stiff Sprays, Natural Silky Fall."
     },
     { 
-      text: "Provided an incredible calmness on my wedding morning. The professional setup he brought to my home was so good I felt like I was in a luxury salon. Highly recommended.", 
-      author: "Elif T.", 
-      context: "Wedding Prep — February 2025",
-      image1: "https://images.unsplash.com/photo-1595476108010-b4d1f10d5e42?q=80&w=1200&auto=format&fit=crop", 
-      image2: "https://images.unsplash.com/photo-1600948836101-f9ff5f6e2469?q=80&w=1200&auto=format&fit=crop", 
-      detailTitle: "STRESS MANAGEMENT",
+      text: "You did all my family's hair at our house. Thank you so much Sinan! The professional setup you brought to my home was so good I felt like I was in a luxury salon.", 
+      author: "Muqudhas", 
+      context: "Family Home Session",
+      image1: "/gallery/home-session-6.jpg", 
+      image2: "/gallery/home-session-7.jpg", 
+      detailTitle: "FAMILY & FRIENDS",
       detailText: "Perfect Focus in Your Own Space."
     },
     { 
       text: "I love my hair so much, thank you again! Sinan is incredibly accommodating with scheduling, always making time for my appointments even after my busy work hours. Extremely professional and flexible.", 
       author: "Klaudia", 
       context: "Regular Client — Private Cut",
-      image1: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1200&auto=format&fit=crop", 
-      image2: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1200&auto=format&fit=crop", 
+      image1: "/gallery/home-session-1.jpg", 
+      image2: "/gallery/home-session-2.jpg", 
       detailTitle: "TOTAL FLEXIBILITY",
       detailText: "Appointments that adapt to your work and lifestyle."
     }
@@ -88,9 +88,9 @@ export default function Home() {
     { id: 4, category: 'renk', src: '/gallery/renk.jpg', title: 'Home Salon Architecture (Color)', desc: 'Applying the most precise coloring processes by setting up all professional salon equipment in a room of your home.' },
     { id: 5, category: 'kesim', src: '/gallery/fon.jpg', title: 'Flawless Blowdry & Care', desc: 'Silky blow-dry supporting natural volume, maintaining its hold throughout the day.' },
     { id: 6, category: 'kesim', src: '/gallery/keratin.jpg', title: 'Personal Atelier Vision', desc: 'Flawless hair design emerging from unparalleled attention to detail in a time entirely dedicated to you.' },
-    { id: 7, category: 'renk', src: '/gallery/extra1.jpg', title: 'Custom Coloring', desc: 'Hair toning applied with a custom color analysis suited for every face type and skin tone.' },
-    { id: 8, category: 'kesim', src: '/gallery/extra2.jpg', title: 'Modern Cutting Techniques', desc: 'A fresh look and removal of split ends in the comfort of your home.' },
-    { id: 9, category: 'renk', src: '/gallery/extra3.jpg', title: 'Creative Colors', desc: 'Vibrant and striking pigment designs (e.g. magenta/pink) applied according to special requests.' },
+    { id: 7, category: 'kesim', src: '/gallery/home-session-1.jpg', title: 'Private Home Styling', desc: 'Bringing the professional salon experience directly to your living room.' },
+    { id: 8, category: 'kesim', src: '/gallery/home-session-2.jpg', title: 'Flawless Styling at Home', desc: 'Precision styling tailored to your comfort and schedule.' },
+    { id: 9, category: 'kesim', src: '/gallery/home-session-3.jpg', title: 'Comfort & Luxury', desc: 'Enjoying top-tier hair design without the stress of salon traffic.' },
     { id: 10, category: 'kesim', src: '/gallery/extra4.jpg', title: 'Masterpiece Details', desc: 'Long-lasting form achieved with extra attention to detail during the cutting and styling phases.' },
     { id: 11, category: 'renk', src: '/gallery/extra5.jpg', title: 'Bleaching & Coloring Process', desc: 'Protective color bleaching processes applied step-by-step without damaging the hair.' },
     { id: 12, category: 'gelin', src: '/gallery/extra6.jpg', title: 'Special Event Prep', desc: 'Special occasion designs promising all-day hold and aesthetic integrity, not just hair.' },
@@ -154,7 +154,7 @@ export default function Home() {
           </div>
           
           <div className="hidden sm:flex items-center justify-end gap-6 flex-1">
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-2 font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.16em] text-on-surface-variant hover:text-secondary transition-colors">
+            <a href="https://wa.me/447510172732" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-2 font-label-caps text-[0.625rem] md:text-[0.6875rem] uppercase tracking-[0.16em] text-on-surface-variant hover:text-secondary transition-colors">
               <span className="w-1.5 h-1.5 rounded-none bg-secondary"></span>
               WhatsApp
             </a>
@@ -263,7 +263,7 @@ export default function Home() {
               <div className="lg:col-span-6 relative">
                 <div className="bg-surface-container-low p-3 md:p-4 shadow-sm border border-outline-variant/20">
                   <div className="aspect-[4/3] sm:aspect-[1/1] overflow-hidden bg-surface-container relative">
-                    <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?q=80&w=1200&auto=format&fit=crop" alt="Professional Tools" />
+                    <img className="w-full h-full object-cover" src="/gallery/extra5.jpg" alt="Professional Salon Setup" />
                     <div className="absolute top-4 left-4 bg-surface-container-lowest/90 px-3.5 py-1.5 border border-outline-variant/30">
                       <span className="font-label-caps text-[0.65rem] tracking-[0.2em] uppercase text-primary">Professional Equipment</span>
                     </div>
@@ -438,13 +438,13 @@ export default function Home() {
                     <div className="flex items-center text-secondary gap-0.5">
                       <Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" />
                     </div>
-                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"No noise, no lines. Focused entirely on you." – Elif T.</span>
+                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"You did all my family's hair at our house. Thank you so much Sinan!" – Muqudhas</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="flex items-center text-secondary gap-0.5">
                       <Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" /><Star fill="currentColor" className="w-[14px] h-[14px]" />
                     </div>
-                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"He was the savior of my wedding morning." – Ceyda K.</span>
+                    <span className="font-label-caps text-[0.6875rem] uppercase tracking-[0.2em] opacity-90">"Thanks ever so much for doing all of our hair. You did an amazing job!" – Gulnas</span>
                   </div>
                   <div className="flex items-center gap-3 opacity-60">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -563,7 +563,7 @@ export default function Home() {
                 <Cal
                   key={calKey}
                   namespace="randevu"
-                  calLink="burak-kaya"
+                  calLink="sinan-yildirim"
                   style={{ width: "100%", height: "100%", minHeight: "650px", overflow: "scroll" }}
                   config={{ layout: "month_view", theme: "light" }}
                 />
@@ -586,9 +586,9 @@ export default function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                   Instagram
                 </a>
-                <a href="tel:+905550000000" className="inline-flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high px-6 py-4 font-label-caps text-label-caps uppercase tracking-[0.16em] transition-colors">
+                <a href="tel:+447510172732" className="inline-flex items-center gap-2 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high px-6 py-4 font-label-caps text-label-caps uppercase tracking-[0.16em] transition-colors">
                   <PhoneCall className="w-[18px] h-[18px] text-secondary" />
-                  +90 555 000 00 00
+                  +44 7510 172732
                 </a>
               </div>
               <div className="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-secondary/10 pointer-events-none blur-2xl"></div>
@@ -621,7 +621,7 @@ export default function Home() {
                 <li>Hours: Mon - Sat (09:00 - 19:00)</li>
                 <li>Sunday: Closed</li>
                 <li>Location: Cardiff, UK</li>
-                <li>WhatsApp: +90 555 000 00 00</li>
+                <li>WhatsApp: +44 7510 172732</li>
                 <li>E-posta: iletisim@sinanyildirim.com</li>
               </ul>
             </div>
